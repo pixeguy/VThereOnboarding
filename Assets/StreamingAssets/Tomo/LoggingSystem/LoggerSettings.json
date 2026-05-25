@@ -1,0 +1,12 @@
+{
+    "SettingsVersion": "0.2",
+    "ColourSettings": {
+        "DebugColor": "#00FF00",
+        "WarningColor": "#FFA500",
+        "ErrorColor": "#FF0000"
+    },
+    "AllowedSavedLogLevels": 7,
+    "FlushInterval": 5.0,
+    "MaxLinesBeforeFlush": 25,
+    "MaxLogSessions": 10
+}

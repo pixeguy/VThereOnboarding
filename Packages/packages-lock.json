@@ -1,26 +1,29 @@
 {
   "dependencies": {
     "com.tomoorganization.buttonsystem": {
-      "version": "file:C:/Users/vthere-dev-intern/Downloads/TomoButtonSystem-main/TomoButtonSystem-main",
+      "version": "https://github.com/TomoOrganization/TomoButtonSystem.git",
       "depth": 0,
-      "source": "local",
+      "source": "git",
       "dependencies": {
         "com.unity.textmeshpro": "3.0.6"
-      }
+      },
+      "hash": "161c6987b85e1a09e707e756f56f54f200aa0e23"
     },
     "com.tomoorganization.core": {
-      "version": "file:C:/Users/vthere-dev-intern/Downloads/TomoCore-main/TomoCore-main",
+      "version": "https://github.com/TomoOrganization/TomoCore.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "0b0ee891d3f3b8f40dd5d5ed62d552d29fadb82e"
     },
     "com.tomoorganization.logger": {
-      "version": "file:C:/Users/vthere-dev-intern/Downloads/TomoLogger-master/TomoLogger-master",
+      "version": "https://github.com/TomoOrganization/TomoLogger.git",
       "depth": 0,
-      "source": "local",
+      "source": "git",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.2.2"
-      }
+      },
+      "hash": "d0e1f0023ed0c7f628331bc181a039b52f444e4f"
     },
     "com.unity.ai.navigation": {
       "version": "2.0.11",

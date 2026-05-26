@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class SampleObjectScript : MonoBehaviour
 {
-    [HideInInspector]
-    public string ObjectPoolName;
+    private string m_ObjectPoolName;
     private PoolObject m_PoolObject;
     private ObjectPool m_Pool;
 
+    public string ObjectPoolName => m_ObjectPoolName;
+
     private void Start()
     {
-        m_Pool = ObjectPoolingController.Instance.TryGetPool(ObjectPoolName);
+        m_Pool = ObjectPoolingController.Instance.TryGetPool(m_ObjectPoolName);
         m_PoolObject = GetComponent<PoolObject>();
     }
 
@@ -19,5 +20,10 @@ public class SampleObjectScript : MonoBehaviour
         {
             m_Pool.ReturnPoolObject(m_PoolObject);
         }
+    }
+
+    public void SetObjectPoolName(string PoolName)
+    {
+        m_ObjectPoolName = PoolName;
     }
 }

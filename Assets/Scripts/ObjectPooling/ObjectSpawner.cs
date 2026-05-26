@@ -11,7 +11,6 @@ public class ObjectSpawner : MonoBehaviour
             {
                 PoolObject Obj = Pool.GetPoolObject();
                 SampleObjectScript ObjScript = Obj.GetComponent<SampleObjectScript>();
-                ObjScript.ObjectPoolName = "Pool1";
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -21,7 +20,6 @@ public class ObjectSpawner : MonoBehaviour
             {
                 PoolObject Obj = Pool.GetPoolObject();
                 SampleObjectScript ObjScript = Obj.GetComponent<SampleObjectScript>();
-                ObjScript.ObjectPoolName = "Pool2";
             }
         }
     }

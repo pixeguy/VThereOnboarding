@@ -389,8 +389,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ca94e48e65f7d4793d23edca503e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPoolingController
-  Object1: {fileID: -8462702983572151202, guid: 4af0882aa1ff7d8479abf9eb9254984e, type: 3}
-  Object2: {fileID: -7276620226890921912, guid: 49191736e69870a4fbde6407c93e3f08, type: 3}
+  m_PoolData:
+  - PoolName: Pool1
+    ObjectPrefab: {fileID: -8462702983572151202, guid: 4af0882aa1ff7d8479abf9eb9254984e, type: 3}
+    AllowPoolExpansion: 1
+    InitialPoolSize: 20
+    IncrementSize: 10
+  - PoolName: Pool2
+    ObjectPrefab: {fileID: -7276620226890921912, guid: 49191736e69870a4fbde6407c93e3f08, type: 3}
+    AllowPoolExpansion: 0
+    InitialPoolSize: 1
+    IncrementSize: 10
 --- !u!4 &678678026
 Transform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class PoolObject : MonoBehaviour
     {
         var m_RigidBody = GetComponent<Rigidbody>();
         m_RigidBody.linearVelocity = Vector3.zero;
+        m_RigidBody.angularVelocity = Vector3.zero;
         transform.position = Vector3.zero;
         gameObject.SetActive(false);
     }

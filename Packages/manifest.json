@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "com.tomoorganization.buttonsystem": "file:C:/Users/vthere-dev-intern/Downloads/TomoButtonSystem-main/TomoButtonSystem-main",
-    "com.tomoorganization.core": "file:C:/Users/vthere-dev-intern/Downloads/TomoCore-main/TomoCore-main",
-    "com.tomoorganization.logger": "file:C:/Users/vthere-dev-intern/Downloads/TomoLogger-master/TomoLogger-master",
+    "com.tomoorganization.buttonsystem": "https://github.com/TomoOrganization/TomoButtonSystem.git",
+    "com.tomoorganization.core": "https://github.com/TomoOrganization/TomoCore.git",
+    "com.tomoorganization.logger": "https://github.com/TomoOrganization/TomoLogger.git",
     "com.unity.ai.navigation": "2.0.11",
     "com.unity.collab-proxy": "2.11.4",
     "com.unity.ide.rider": "3.0.39",

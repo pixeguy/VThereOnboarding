@@ -26,6 +26,9 @@ public class ObjectPool
 
             PoolObject PoolObj = Obj.GetComponent<PoolObject>();
             m_InactiveObjects.Enqueue(PoolObj);
+
+            SampleObjectScript ObjScript = Obj.GetComponent<SampleObjectScript>();
+            ObjScript.SetObjectPoolName(PoolData.PoolName);
         }
     }
 

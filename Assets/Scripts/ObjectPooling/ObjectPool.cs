@@ -16,8 +16,8 @@ public class ObjectPool
     {
         m_CachedObject = PoolData.ObjectPrefab;
         m_AllowPoolExpansion = PoolData.AllowPoolExpansion;
-        //m_InitialPoolSize = PoolData.InitialPoolSize;
-        //m_IncrementSize = PoolData.IncrementSize;
+        m_InitialPoolSize = PoolData.InitialPoolSize;
+        m_IncrementSize = PoolData.IncrementSize;
 
         for (int i = 0; i < m_InitialPoolSize; i++)
         {
@@ -45,7 +45,10 @@ public class ObjectPool
     {
         if (m_InactiveObjects.Count <= 0)
         {
-            AddNewObjectsToPool();
+            if (m_AllowPoolExpansion)
+                AddNewObjectsToPool();
+            else 
+                ReturnEarliestObject();
         }
 
         if (m_InactiveObjects.TryDequeue(out PoolObject poolObj))
@@ -56,6 +59,15 @@ public class ObjectPool
         }
 
         return null;
+    }
+
+    public void ReturnEarliestObject()
+    {
+        if (m_ActiveObjects.Count > 0)
+        {
+            PoolObject PoolObj = m_ActiveObjects[0];
+            ReturnPoolObject(PoolObj);
+        }
     }
 
     public void ReturnPoolObject(PoolObject PoolObj)

@@ -13,6 +13,7 @@ Recordings/
 Assets/AssetStoreTools*
 
 .vs/
+.vsconfig
 .idea/
 .gradle/
 

@@ -8,28 +8,26 @@ public struct ObjectPoolData
     public string PoolName;
     public PoolObject ObjectPrefab;
     public bool AllowPoolExpansion;
-    public bool InitialPoolSize;
-    public bool IncrementSize;
+    public int InitialPoolSize;
+
+    [Header("Not needed if AllowPoolExpansion is false")]
+    public int IncrementSize;
 }
 
 public class ObjectPoolingController : ControllerBase<ObjectPoolingController>
 {
     private Dictionary<string, ObjectPool> m_ObjectPools = new();
 
-    public PoolObject Object1;
-    public PoolObject Object2;
+    [SerializeField] private ObjectPoolData[] m_PoolData;
 
     protected override void ControllerAwake()
     {
-        AddNewPool("Pool1", Object1);
-        AddNewPool("Pool2", Object2);
+        foreach(ObjectPoolData PoolData in m_PoolData)
+        {
+            ObjectPool Pool = new ObjectPool(PoolData);
+            RegisterPool(PoolData.PoolName, Pool);
+        }
         SetControllerToReady();
-    }
-
-    public void AddNewPool(string PoolName, PoolObject Obj)
-    {
-        //ObjectPool Pool = new ObjectPool(Obj);
-        //RegisterPool(PoolName, Pool);
     }
 
     public void RegisterPool(string PoolName, ObjectPool Pool)

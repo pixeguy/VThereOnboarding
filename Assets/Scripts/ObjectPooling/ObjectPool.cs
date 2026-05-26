@@ -25,7 +25,7 @@ public class ObjectPool
         AddNewObjectsToPool(m_InitialPoolSize);
     }
 
-    public void AddNewObjectsToPool(int amt)
+    private void AddNewObjectsToPool(int amt)
     {
         for (int i = 0; i < m_IncrementSize; i++)
         {
@@ -50,14 +50,14 @@ public class ObjectPool
         if (m_InactiveObjects.TryDequeue(out PoolObject poolObj))
         {
             m_ActiveObjects.Add(poolObj);
-            poolObj.OnObjectActive();
+            poolObj.HandleTakenFromPool();
             return poolObj;
         }
 
         return null;
     }
 
-    public void ReturnEarliestObject()
+    private void ReturnEarliestObject()
     {
         if (m_ActiveObjects.Count == 0)
             return;
@@ -69,7 +69,7 @@ public class ObjectPool
     public void ReturnPoolObject(PoolObject PoolObj)
     {
         m_ActiveObjects.Remove(PoolObj);
-        PoolObj.OnObjectInactive();
+        PoolObj.HandleReturnToPool();
         m_InactiveObjects.Enqueue(PoolObj);
     }
 }

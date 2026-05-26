@@ -18,7 +18,7 @@ public class ObjectPoolingController : ControllerBase<ObjectPoolingController>
         SetControllerToReady();
     }
 
-    public void RegisterPool(string PoolName, ObjectPool Pool)
+    private void RegisterPool(string PoolName, ObjectPool Pool)
     {
         m_ObjectPools.Add(PoolName, Pool);
     }

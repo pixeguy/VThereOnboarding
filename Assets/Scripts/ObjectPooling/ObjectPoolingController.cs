@@ -36,4 +36,10 @@ public class ObjectPoolingController : ControllerBase<ObjectPoolingController>
         else
             return Pool;
     }
+
+    public void ReturnObjectToPool(PoolObject Obj, string PoolName)
+    {
+        ObjectPool Pool = TryGetPool(PoolName);
+        Pool.ReturnPoolObject(Obj);
+    }
 }

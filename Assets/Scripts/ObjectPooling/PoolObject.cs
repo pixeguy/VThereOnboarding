@@ -3,12 +3,6 @@ using UnityEngine;
 public class PoolObject : MonoBehaviour
 {
     private string m_ObjectPoolName;
-    private ObjectPool m_Pool;
-
-    private void Start()
-    {
-        m_Pool = ObjectPoolingController.Instance.TryGetPool(m_ObjectPoolName);
-    }
 
     public void SetObjectPoolName(string PoolName)
     {
@@ -17,7 +11,7 @@ public class PoolObject : MonoBehaviour
 
     public void ReturnSelfToPool()
     {
-        m_Pool.ReturnPoolObject(this);
+        ObjectPoolingController.Instance.ReturnObjectToPool(this, m_ObjectPoolName);
     }
 
     public virtual void HandleTakenFromPool()

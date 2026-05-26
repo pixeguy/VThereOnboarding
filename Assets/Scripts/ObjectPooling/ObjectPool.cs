@@ -22,27 +22,17 @@ public class ObjectPool
 
     public void Initialise()
     {
-        for (int i = 0; i < m_InitialPoolSize; i++)
-        {
-            GameObject Obj = GameObject.Instantiate(m_CachedObject.gameObject);
-            Obj.SetActive(false);
-
-            PoolObject PoolObj = Obj.GetComponent<PoolObject>();
-            m_InactiveObjects.Enqueue(PoolObj);
-
-            SampleObjectScript ObjScript = Obj.GetComponent<SampleObjectScript>();
-            ObjScript.SetObjectPoolName(m_PoolName);
-        }
+        AddNewObjectsToPool(m_InitialPoolSize);
     }
 
-    public void AddNewObjectsToPool()
+    public void AddNewObjectsToPool(int amt)
     {
         for (int i = 0; i < m_IncrementSize; i++)
         {
-            GameObject Obj = GameObject.Instantiate(m_CachedObject.gameObject);
-            Obj.SetActive(false);
+            PoolObject PoolObj = GameObject.Instantiate(m_CachedObject);
+            PoolObj.SetObjectPoolName(m_PoolName);
+            PoolObj.HandleReturnToPool();
 
-            PoolObject PoolObj = Obj.GetComponent<PoolObject>();
             m_InactiveObjects.Enqueue(PoolObj);
         }
     }
@@ -52,7 +42,7 @@ public class ObjectPool
         if (m_InactiveObjects.Count <= 0)
         {
             if (m_IncrementSize != 0)
-                AddNewObjectsToPool();
+                AddNewObjectsToPool(m_IncrementSize);
             else 
                 ReturnEarliestObject();
         }

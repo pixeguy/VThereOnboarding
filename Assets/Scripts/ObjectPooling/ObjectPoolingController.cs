@@ -2,30 +2,18 @@ using System.Collections.Generic;
 using Tomo.Core;
 using UnityEngine;
 
-[System.Serializable]
-public struct ObjectPoolData
-{
-    public string PoolName;
-    public PoolObject ObjectPrefab;
-    public bool AllowPoolExpansion;
-    public int InitialPoolSize;
-
-    [Header("Not needed if AllowPoolExpansion is false")]
-    public int IncrementSize;
-}
-
 public class ObjectPoolingController : ControllerBase<ObjectPoolingController>
 {
     private Dictionary<string, ObjectPool> m_ObjectPools = new();
 
-    [SerializeField] private ObjectPoolData[] m_PoolData;
+    [SerializeField] private ObjectPool[] m_Pool;
 
     protected override void ControllerAwake()
     {
-        foreach(ObjectPoolData PoolData in m_PoolData)
+        foreach (ObjectPool pool in m_Pool)
         {
-            ObjectPool Pool = new ObjectPool(PoolData);
-            RegisterPool(PoolData.PoolName, Pool);
+            pool.Initialise();
+            RegisterPool(pool.PoolName, pool);
         }
         SetControllerToReady();
     }

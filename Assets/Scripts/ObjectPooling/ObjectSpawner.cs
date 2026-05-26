@@ -10,7 +10,6 @@ public class ObjectSpawner : MonoBehaviour
             if (Pool != null)
             {
                 PoolObject Obj = Pool.GetPoolObject();
-                SampleObjectScript ObjScript = Obj.GetComponent<SampleObjectScript>();
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -19,7 +18,6 @@ public class ObjectSpawner : MonoBehaviour
             if (Pool != null)
             {
                 PoolObject Obj = Pool.GetPoolObject();
-                SampleObjectScript ObjScript = Obj.GetComponent<SampleObjectScript>();
             }
         }
     }

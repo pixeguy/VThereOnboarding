@@ -6,8 +6,6 @@ public class SampleObjectScript : MonoBehaviour
     private PoolObject m_PoolObject;
     private ObjectPool m_Pool;
 
-    public string ObjectPoolName => m_ObjectPoolName;
-
     private void Start()
     {
         m_Pool = ObjectPoolingController.Instance.TryGetPool(m_ObjectPoolName);

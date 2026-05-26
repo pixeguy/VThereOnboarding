@@ -1,24 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ObjectPool
 {
     private List<PoolObject> m_ActiveObjects = new();
     private Queue<PoolObject> m_InactiveObjects = new();
 
+    [SerializeField]
+    private string m_PoolName;
+    public string PoolName => m_PoolName;
+
+    [SerializeField]
     private PoolObject m_CachedObject;
 
-    private bool m_AllowPoolExpansion = true;
+    [SerializeField]
     private int m_InitialPoolSize;
+
+    [SerializeField]
     private int m_IncrementSize;
 
-    public ObjectPool(ObjectPoolData PoolData)
+    public void Initialise()
     {
-        m_CachedObject = PoolData.ObjectPrefab;
-        m_AllowPoolExpansion = PoolData.AllowPoolExpansion;
-        m_InitialPoolSize = PoolData.InitialPoolSize;
-        m_IncrementSize = PoolData.IncrementSize;
-
         for (int i = 0; i < m_InitialPoolSize; i++)
         {
             GameObject Obj = GameObject.Instantiate(m_CachedObject.gameObject);
@@ -28,7 +31,7 @@ public class ObjectPool
             m_InactiveObjects.Enqueue(PoolObj);
 
             SampleObjectScript ObjScript = Obj.GetComponent<SampleObjectScript>();
-            ObjScript.SetObjectPoolName(PoolData.PoolName);
+            ObjScript.SetObjectPoolName(m_PoolName);
         }
     }
 
@@ -48,7 +51,7 @@ public class ObjectPool
     {
         if (m_InactiveObjects.Count <= 0)
         {
-            if (m_AllowPoolExpansion)
+            if (m_IncrementSize != 0)
                 AddNewObjectsToPool();
             else 
                 ReturnEarliestObject();
@@ -66,11 +69,11 @@ public class ObjectPool
 
     public void ReturnEarliestObject()
     {
-        if (m_ActiveObjects.Count > 0)
-        {
-            PoolObject PoolObj = m_ActiveObjects[0];
-            ReturnPoolObject(PoolObj);
-        }
+        if (m_ActiveObjects.Count == 0)
+            return;
+
+        PoolObject PoolObj = m_ActiveObjects[0];
+        ReturnPoolObject(PoolObj);
     }
 
     public void ReturnPoolObject(PoolObject PoolObj)
